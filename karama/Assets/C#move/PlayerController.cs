@@ -67,18 +67,19 @@ public class PlayerController : MonoBehaviour
                 if (moveCounter != null && moveCounter.currentMoves > 0)
                 {
                     moveCounter.UseMove();
-                    StartCoroutine(JumpVertical());
+                    StartCoroutine(Roll(direction, true)); // UDタイルへの移動は特別扱い
                 }
                 return;
             }
 
             //WhiteTairu なら一致不要
-            if (tileTexture.ToLower() == "whitetairu" || tileTexture.ToLower() == cubeTexture.ToLower())
+            if (tileTexture.ToLower() == "whitetairu"
+                || tileTexture.ToLower() == cubeTexture.ToLower())
             {
                 if (moveCounter != null && moveCounter.currentMoves > 0)
                 {
                     moveCounter.UseMove();
-                    StartCoroutine(Roll(direction));
+                    StartCoroutine(Roll(direction, false));
                 }
             }
         }
@@ -95,7 +96,7 @@ public class PlayerController : MonoBehaviour
         return hitColliders.Length > 0;
     }
 
-    IEnumerator Roll(Vector3 direction)
+    IEnumerator Roll(Vector3 direction , bool checkLiftAfter)
     {
         isMoving = true; // 移動開始
 
@@ -125,7 +126,9 @@ public class PlayerController : MonoBehaviour
         // **移動完了後のキューブの面のテクスチャを確認**
         //Debug.Log($"移動完了後のキューブ面のテクスチャ: {GetCubeFaceTexture(Vector3.forward)}");
 
+        if (checkLiftAfter) CheckAndStartLift(); //ここでUDタイル昇降処理を実行
         UpdateArrowVisibility(); //移動後に矢印の表示を更新
+                                 // 回転移動後の処理内
     }
 
     void UpdateCubeFaces(Vector3 direction)
@@ -197,8 +200,10 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log($"方向: {dir}, タイルのテクスチャ: {tileTexture}, キューブ面のテクスチャ: {cubeTexture}");
 
 
-                //小文字に統一して比較す   //WhiteTairu は常に通行可能とする
-                if (tileTexture.ToLower() == "whitetairu" || tileTexture.ToLower() == cubeTexture.ToLower())
+                //WhiteTairu は常に通行可能とする     //名前に_UDが含まれているか    //小文字に統一して比較す   
+                if (tileTexture.ToLower() == "whitetairu"
+                    || tileTexture.ToLower().Contains("_ud")
+                    || tileTexture.ToLower() == cubeTexture.ToLower())
                 {
                     GameObject arrow = Instantiate(arrowPrefab, transform.position + dir * 1.2f, Quaternion.identity);
                     arrow.transform.LookAt(transform.position);
@@ -254,28 +259,58 @@ public class PlayerController : MonoBehaviour
         }
     }
     // UD_Tile 用の上下ジャンプ処理
-    IEnumerator JumpVertical()
+    //IEnumerator JumpVertical()
+    //{
+    //    isMoving = true;
+    //    HideArrows();
+
+    //    float targetY = transform.position.y == 0 ? 10 : 0; // 下にいたら上へ、上にいたら下へ
+
+    //    Vector3 start = transform.position;
+    //    Vector3 end = new Vector3(start.x, targetY, start.z);
+
+    //    float elapsed = 0f;
+
+    //    while (elapsed < moveDuration)
+    //    {
+    //        transform.position = Vector3.Lerp(start, end, elapsed / moveDuration);
+    //        elapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+
+    //    transform.position = end;
+
+    //    isMoving = false;
+    //    UpdateArrowVisibility(); // 矢印更新
+    //}
+    void CheckAndStartLift()
     {
-        isMoving = true;
-        HideArrows();
+        Vector3 checkPos = transform.position;
+        checkPos.y = 0f; // 下層基準でUD_Tileに配置
 
-        float targetY = transform.position.y == 0 ? 10 : 0; // 下にいたら上へ、上にいたら下へ
-
-        Vector3 start = transform.position;
-        Vector3 end = new Vector3(start.x, targetY, start.z);
-
-        float elapsed = 0f;
-
-        while (elapsed < moveDuration)
+        Collider[] hits = Physics.OverlapSphere(checkPos, 0.1f);
+        foreach (var hit in hits)
         {
-            transform.position = Vector3.Lerp(start, end, elapsed / moveDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            Renderer rend = hit.GetComponent<Renderer>();
+            if (rend != null && rend.material.mainTexture != null)
+            {
+                string texName = rend.material.mainTexture.name.ToLower();
+                if (texName.Contains("_ud"))
+                {
+                    UD_Tile udTile = hit.GetComponent<UD_Tile>();
+                    if (udTile != null)
+                    {
+                        StartCoroutine(StartLiftWithDelay(udTile));
+                    }
+                }
+            }
         }
+    }
 
-        transform.position = end;
-
-        isMoving = false;
-        UpdateArrowVisibility(); // 矢印更新
+    // 回転後に少し待ってから昇降開始（0.5秒待機など）
+    IEnumerator StartLiftWithDelay(UD_Tile udTile)
+    {
+        yield return new WaitForSeconds(0.5f); // 必要に応じて調整可能
+        udTile.StartLift(this.gameObject);
     }
 }
