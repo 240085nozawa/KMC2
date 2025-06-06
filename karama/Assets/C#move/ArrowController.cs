@@ -18,14 +18,15 @@ public class ArrowController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))  // 左クリック
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            RaycastHit[] hits = Physics.RaycastAll(ray); // ← 複数ヒットを取得
 
-            if (Physics.Raycast(ray, out hit))
+            foreach (var hit in hits)
             {
-                if (hit.collider.gameObject == gameObject) // 矢印がクリックされた
+                if (hit.collider != null && hit.collider.gameObject == gameObject)// 矢印がクリックされた
                 {
-                    Debug.Log("矢印クリック: " + moveDirection);
+                    Debug.Log("矢印クリック成功: " + moveDirection);
                     playerController.TryMove(moveDirection);
+                    break;
                 }
             }
         }
