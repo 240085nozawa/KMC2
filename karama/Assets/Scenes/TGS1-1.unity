@@ -1159,6 +1159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal
       objectReference: {fileID: 0}
+    - target: {fileID: 7830335394189785317, guid: 2d4e2786da47fc34e89cd86a0e490c5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8114934367146779626, guid: 2d4e2786da47fc34e89cd86a0e490c5d, type: 3}
       propertyPath: m_IsActive
       value: 0
