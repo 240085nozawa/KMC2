@@ -61,16 +61,16 @@ public class PlayerController : MonoBehaviour
             string tileTexture = GetTileTextureName(targetPos);
             string cubeTexture = GetCubeFaceTexture(direction);
 
-            //UD_Tile 判定：マテリアル名に "_UD" が含まれていたら上下移動
-            if (tileTexture.ToLower().Contains("_ud"))
-            {
-                if (moveCounter != null && moveCounter.currentMoves > 0)
-                {
-                    moveCounter.UseMove();
-                    StartCoroutine(Roll(direction, true)); // UDタイルへの移動は特別扱い
-                }
-                return;
-            }
+            ////UD_Tile 判定：マテリアル名に "_UD" が含まれていたら上下移動
+            //if (tileTexture.ToLower().Contains("_ud"))
+            //{
+            //    if (moveCounter != null && moveCounter.currentMoves > 0)
+            //    {
+            //        moveCounter.UseMove();
+            //        StartCoroutine(Roll(direction, true)); // UDタイルへの移動は特別扱い
+            //    }
+            //    return;
+            //}
 
             //WhiteTairu なら一致不要
             if (tileTexture.ToLower() == "whitetairu"
@@ -89,12 +89,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool IsTilePresent(Vector3 position)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(position, 0.6f, tileLayer); // 半径を拡大
-        Debug.Log($"Checking tile at {position}, found: {hitColliders.Length}");
-        return hitColliders.Length > 0;
-    }
+    
 
     IEnumerator Roll(Vector3 direction , bool checkLiftAfter)
     {
@@ -126,11 +121,47 @@ public class PlayerController : MonoBehaviour
         // **移動完了後のキューブの面のテクスチャを確認**
         //Debug.Log($"移動完了後のキューブ面のテクスチャ: {GetCubeFaceTexture(Vector3.forward)}");
 
-        if (checkLiftAfter) CheckAndStartLift(); //ここでUDタイル昇降処理を実行
+        //if (checkLiftAfter) CheckAndStartLift(); //ここでUDタイル昇降処理を実行
         UpdateArrowVisibility(); //移動後に矢印の表示を更新
                                  // 回転移動後の処理内
     }
 
+    // タイルが存在するかチェック
+    bool IsTilePresent(Vector3 position)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(position, 0.6f, tileLayer); // 半径を拡大
+        Debug.Log($"Checking tile at {position}, found: {hitColliders.Length}");
+        return hitColliders.Length > 0;
+    }
+
+    // 指定位置のタイルのテクスチャ名（色）を取得
+    string GetTileTextureName(Vector3 position)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(position, 0.6f, tileLayer);
+        if (hitColliders.Length > 0)
+        {
+            Renderer tileRenderer = hitColliders[0].GetComponent<Renderer>();
+            if (tileRenderer != null && tileRenderer.material != null && tileRenderer.material.mainTexture != null)
+            {
+                string textureName = tileRenderer.material.mainTexture.name;
+                //Debug.Log($"タイルの位置: {position}, テクスチャ名: {textureName}"); // ← テクスチャ名をログ出力
+                return tileRenderer.material.mainTexture.name;
+            }
+        }
+        return "";
+    }
+
+    // 進行方向に応じてプレイヤーのキューブ面の色を取得
+    string GetCubeFaceTexture(Vector3 direction)
+    {
+        if (direction == Vector3.forward) return faceTextures["Front"];
+        if (direction == Vector3.back) return faceTextures["Back"];
+        if (direction == Vector3.right) return faceTextures["Right"];
+        if (direction == Vector3.left) return faceTextures["Left"];
+        return "";
+    }
+
+    // キューブの面の状態を回転に応じて更新
     void UpdateCubeFaces(Vector3 direction)
     {
         string temp;
@@ -172,7 +203,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+    // 移動可能な方向に矢印を表示
     void UpdateArrowVisibility()
     {
         if (isMoving) return; //移動中は矢印を更新しない
@@ -218,30 +249,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    string GetTileTextureName(Vector3 position)
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(position, 0.6f, tileLayer);
-        if (hitColliders.Length > 0)
-        {
-            Renderer tileRenderer = hitColliders[0].GetComponent<Renderer>();
-            if (tileRenderer != null && tileRenderer.material != null && tileRenderer.material.mainTexture != null)
-            {
-                string textureName = tileRenderer.material.mainTexture.name;
-                //Debug.Log($"タイルの位置: {position}, テクスチャ名: {textureName}"); // ← テクスチャ名をログ出力
-                return tileRenderer.material.mainTexture.name;
-            }
-        }
-        return "";
-    }
-
-    string GetCubeFaceTexture(Vector3 direction)
-    {
-        if (direction == Vector3.forward) return faceTextures["Front"];
-        if (direction == Vector3.back) return faceTextures["Back"];
-        if (direction == Vector3.right) return faceTextures["Right"];
-        if (direction == Vector3.left) return faceTextures["Left"];
-        return "";
-    }
+    
 
     void ClearArrows()
     {
@@ -283,34 +291,34 @@ public class PlayerController : MonoBehaviour
     //    isMoving = false;
     //    UpdateArrowVisibility(); // 矢印更新
     //}
-    void CheckAndStartLift()
-    {
-        Vector3 checkPos = transform.position;
-        checkPos.y = 0f; // 下層基準でUD_Tileに配置
+    //void CheckAndStartLift()
+    //{
+    //    Vector3 checkPos = transform.position;
+    //    checkPos.y = 0f; // 下層基準でUD_Tileに配置
 
-        Collider[] hits = Physics.OverlapSphere(checkPos, 0.1f);
-        foreach (var hit in hits)
-        {
-            Renderer rend = hit.GetComponent<Renderer>();
-            if (rend != null && rend.material.mainTexture != null)
-            {
-                string texName = rend.material.mainTexture.name.ToLower();
-                if (texName.Contains("_ud"))
-                {
-                    UD_Tile udTile = hit.GetComponent<UD_Tile>();
-                    if (udTile != null)
-                    {
-                        StartCoroutine(StartLiftWithDelay(udTile));
-                    }
-                }
-            }
-        }
-    }
+    //    Collider[] hits = Physics.OverlapSphere(checkPos, 0.1f);
+    //    foreach (var hit in hits)
+    //    {
+    //        Renderer rend = hit.GetComponent<Renderer>();
+    //        if (rend != null && rend.material.mainTexture != null)
+    //        {
+    //            string texName = rend.material.mainTexture.name.ToLower();
+    //            if (texName.Contains("_ud"))
+    //            {
+    //                UD_Tile udTile = hit.GetComponent<UD_Tile>();
+    //                if (udTile != null)
+    //                {
+    //                    StartCoroutine(StartLiftWithDelay(udTile));
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
-    // 回転後に少し待ってから昇降開始（0.5秒待機など）
-    IEnumerator StartLiftWithDelay(UD_Tile udTile)
-    {
-        yield return new WaitForSeconds(0.5f); // 必要に応じて調整可能
-        udTile.StartLift(this.gameObject);
-    }
+    //// 回転後に少し待ってから昇降開始（0.5秒待機など）
+    //IEnumerator StartLiftWithDelay(UD_Tile udTile)
+    //{
+    //    yield return new WaitForSeconds(0.5f); // 必要に応じて調整可能
+    //    udTile.StartLift(this.gameObject);
+    //}
 }
