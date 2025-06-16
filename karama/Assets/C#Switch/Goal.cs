@@ -30,6 +30,17 @@ public class Goal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // プレイヤーオブジェクトを探して Transform を取得
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            playerTransform = player.transform;
+        }
+        else
+        {
+            Debug.LogError("[Goal] Playerタグのついたオブジェクトが見つかりません！");
+        }
+
         if (playerTransform == null) return; // プレイヤーが見つからなければ処理しない
 
         if (IsAtGoal(playerTransform.position))
