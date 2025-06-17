@@ -39,6 +39,7 @@ public class ArrowManager : MonoBehaviour
 
                 if (tileTexture == "whitetairu" || tileTexture.Contains("_ud") || tileTexture == cubeTexture)
                 {
+                    
                     Vector3 arrowPos = playerTransform.position + dir * 1.2f;
                     GameObject arrow = GameObject.Instantiate(arrowPrefab, arrowPos, Quaternion.identity);
                     arrow.transform.LookAt(playerTransform.position);
