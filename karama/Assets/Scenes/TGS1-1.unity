@@ -1613,6 +1613,9 @@ MonoBehaviour:
   ySpeed: 240
   yMinLimit: -20
   yMaxLimit: 80
+  minDistance: 1.5
+  maxDistance: 10
+  zoomSpeed: 5
 --- !u!1 &1058746072
 GameObject:
   m_ObjectHideFlags: 0
