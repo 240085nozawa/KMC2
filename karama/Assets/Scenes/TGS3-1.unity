@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.84549654, g: 0.9433962, b: 0.9433962, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.02
@@ -2174,6 +2174,9 @@ MonoBehaviour:
   ySpeed: 240
   yMinLimit: -20
   yMaxLimit: 80
+  minDistance: 1.5
+  maxDistance: 10
+  zoomSpeed: 5
 --- !u!4 &1018133967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2606990564195681429, guid: 41982a7bc0005264789a0b87153c255e, type: 3}

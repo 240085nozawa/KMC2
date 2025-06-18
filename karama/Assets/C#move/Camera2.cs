@@ -21,6 +21,10 @@ public class Camera2 : MonoBehaviour
     private float x = 0.0f;
     private float y = 0.0f;
 
+    public float minDistance = 1.5f; // 最小ズーム距離
+    public float maxDistance = 10.0f; // 最大ズーム距離
+    public float zoomSpeed = 5.0f; // ズーム速度
+
     void Start()
     {
         // 初期角度の取得
@@ -34,6 +38,11 @@ public class Camera2 : MonoBehaviour
 
     void LateUpdate()
     {
+        // マウスホイールでズーム
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        distance -= scroll * zoomSpeed;
+        distance = Mathf.Clamp(distance, minDistance, maxDistance);
+
         // 右クリックしている間だけ回転
         if (Input.GetMouseButton(1))
         {
