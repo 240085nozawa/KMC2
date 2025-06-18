@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6440d503fbab0c342872fda7909d6fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickSoundPrefab: {fileID: 6629932058832283444, guid: a017a6cc148995344a3876f0f7faa8a4, type: 3}
 --- !u!65 &9184052938469361288
 BoxCollider:
   m_ObjectHideFlags: 0

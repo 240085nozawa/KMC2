@@ -18,6 +18,7 @@ public class ArrowManager : MonoBehaviour
         playerTransform = player;
         tileLayer = layer;
         faceManager = faceMgr;
+        
     }
 
     // 矢印を表示する処理（4方向チェック）
@@ -42,6 +43,7 @@ public class ArrowManager : MonoBehaviour
                     
                     Vector3 arrowPos = playerTransform.position + dir * 1.2f;
                     GameObject arrow = GameObject.Instantiate(arrowPrefab, arrowPos, Quaternion.identity);
+                    
                     arrow.transform.LookAt(playerTransform.position);
                     arrow.GetComponent<ArrowController>().SetDirection(playerTransform.GetComponent<PlayerController>(), dir);
                     arrows.Add(arrow);
