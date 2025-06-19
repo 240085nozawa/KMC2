@@ -14,10 +14,10 @@ public class Clear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Title");
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SceneManager.LoadScene("Title");
+        //}
     }
     public void LoadScene(string sceneName)
     {
