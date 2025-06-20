@@ -30,14 +30,13 @@ public class NextStage : MonoBehaviour
     }
     void LoadNextStage()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
+        string currentScene = StageTracker.LastPlayedStage;
 
-        // TGS1-1, TGS2-3 などの形式を想定
-        Match match = Regex.Match(currentScene, @"TGS(\\d+)-(\\d+)");
+        Match match = Regex.Match(currentScene, @"TGS(\d+)-(\d+)"); // ← ここを修正
 
         if (!match.Success || match.Groups.Count < 3)
         {
-            Debug.LogError("シーン名が TGSX-Y の形式ではありません。" + currentScene);
+            Debug.LogError("シーン名が TGSX-Y の形式ではありません: " + currentScene);
             return;
         }
 

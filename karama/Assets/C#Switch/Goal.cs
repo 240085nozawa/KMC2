@@ -57,6 +57,8 @@ public class Goal : MonoBehaviour
 
             if (stayTime >= requiredTime)
             {
+                StageTracker.LastPlayedStage = SceneManager.GetActiveScene().name;
+
                 Debug.Log("[Goal] シーン移動を実行！");
                 SceneManager.LoadScene("Clear"); // シーン移動（シーン名は変更可）
             }
