@@ -1,32 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Option : MonoBehaviour
 {
-    [Header("オプションUI")]
-    [SerializeField] private GameObject optionPanel; // 背景パネル（白＋半透明）
-    [SerializeField] private GameObject button1;
-    [SerializeField] private GameObject button2;
-    [SerializeField] private GameObject button3;
+    [Header("表示・非表示対象のUI要素")]
+    [SerializeField] private List<GameObject> optionElements = new List<GameObject>();
 
     private bool isVisible = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Optionボタンが押されたときに呼ばれる
     public void ToggleOptions()
     {
         isVisible = !isVisible;
 
-        optionPanel.SetActive(isVisible);
-        button1.SetActive(isVisible);
-        button2.SetActive(isVisible);
-        button3.SetActive(isVisible);
+        foreach (GameObject element in optionElements)
+        {
+            if (element != null)
+                element.SetActive(isVisible);
+        }
     }
 
-    // 開始時は非表示にする
+    // 開始時はすべて非表示にする
     void Start()
     {
-        optionPanel.SetActive(false);
-        button1.SetActive(false);
-        button2.SetActive(false);
-        button3.SetActive(false);
+        foreach (GameObject element in optionElements)
+        {
+            if (element != null)
+                element.SetActive(false);
+        }
     }
 }
