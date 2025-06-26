@@ -2646,7 +2646,7 @@ MonoBehaviour:
   - {fileID: 0}
   tipLength: 5
   tipDuration: 3
-  hintMarkerPrefab: {fileID: 0}
+  hintMarkerPrefab: {fileID: 6116935437278933294, guid: d14908e152c13544bbcd75a98817d37c, type: 3}
 --- !u!1 &6101854867835174352
 GameObject:
   m_ObjectHideFlags: 0
