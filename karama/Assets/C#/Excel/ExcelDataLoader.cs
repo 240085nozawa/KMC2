@@ -5,7 +5,7 @@ using System.IO;
 public class ExcelDataLoader : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public string csvFileName = "Stage1.csv";
+    public string csvFileName = "Stage1_Template.csv";
 
     public List<string[]> LoadStageData()
     {

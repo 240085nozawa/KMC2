@@ -459,51 +459,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1508997167
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1508997169}
-  - component: {fileID: 1508997168}
-  m_Layer: 0
-  m_Name: Excel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1508997168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508997167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87ee3a86975ff004d8da662581913ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  csvFileName: Stage1.csv
---- !u!4 &1508997169
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1508997167}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.1664834, y: 3.5411386, z: 1.1947064}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1907379958
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1907379960}
   - component: {fileID: 1907379959}
+  - component: {fileID: 1907379961}
   m_Layer: 0
   m_Name: Stage
   m_TagString: Untagged
@@ -533,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcef0997a23b39f4fbdf8edd5c4c4a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataLoader: {fileID: 0}
+  dataLoader: {fileID: 1907379961}
   whiteTilePrefab: {fileID: 1445573216802891484, guid: 0f7f67822b710cb408ca5a194e95af14, type: 3}
   redTilePrefab: {fileID: 6784155528206240137, guid: 862a86e5a89886f4aa4a25ea6a2733b6, type: 3}
   blueTilePrefab: {fileID: 4723043832358003236, guid: 0fbf06b89f4e66647be92206bf39ac43, type: 3}
@@ -558,6 +514,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907379961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907379958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ee3a86975ff004d8da662581913ac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  csvFileName: Stage1_Template.csv
 --- !u!1 &2116198337
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,5 +599,4 @@ SceneRoots:
   - {fileID: 961739753}
   - {fileID: 1160234427}
   - {fileID: 604712594}
-  - {fileID: 1508997169}
   - {fileID: 1907379960}
