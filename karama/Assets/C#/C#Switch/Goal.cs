@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,9 @@ public class Goal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("[Goal] Update が動いています"); // ←これを追加！
+        Debug.Log($"[Goal] 現在のプレイヤー座標: {playerTransform.position}, ゴール座標: {goalPosition}");
+
         // プレイヤーオブジェクトを探して Transform を取得
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -60,7 +64,15 @@ public class Goal : MonoBehaviour
                 StageTracker.LastPlayedStage = SceneManager.GetActiveScene().name;
 
                 Debug.Log("[Goal] シーン移動を実行！");
-                SceneManager.LoadScene("Clear"); // シーン移動（シーン名は変更可）
+
+                if (Application.CanStreamedLevelBeLoaded("Clear"))
+                {
+                    SceneManager.LoadScene("Clear");
+                }
+                else
+                {
+                    Debug.LogError("[Goal] 'Clear' シーンがビルドに含まれていないか、名前が間違っています！");
+                }
             }
         }
         else

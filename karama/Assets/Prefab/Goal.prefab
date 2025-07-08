@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2692666469198946433}
   - component: {fileID: 1198190539492118419}
   - component: {fileID: 5768957022737145904}
-  - component: {fileID: 5050583119511374864}
+  - component: {fileID: 5781161896523559850}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Goal
@@ -195,7 +195,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5050583119511374864
+--- !u!114 &5781161896523559850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

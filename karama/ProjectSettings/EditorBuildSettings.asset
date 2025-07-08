@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelect.unity
     guid: ac1414a077da9ef4d92292227507fe26
   - enabled: 1
+    path: Assets/Scenes/Clear.unity
+    guid: 8ccf5594ca1c4854d85230a914f33673
+  - enabled: 1
     path: Assets/Scenes/TGS1-1.unity
     guid: 8473176943b4c72429f12dc8e9fee7fa
   - enabled: 1
@@ -23,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TGS3-1.unity
     guid: 5235adfa00f7ccb41be4fc5bd028a70a
-  - enabled: 1
-    path: Assets/Scenes/Clear.unity
-    guid: 8ccf5594ca1c4854d85230a914f33673
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
