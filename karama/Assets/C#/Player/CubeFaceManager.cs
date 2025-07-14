@@ -12,7 +12,7 @@ public class CubeFaceManager : MonoBehaviour
         { "Bottom", "BlueTairu" },
         { "Front", "RedTairu" },
         { "Back", "GreenTairu" },
-        { "Left", "BlackTairu" },
+        { "Left", "CyanTairu" },
         { "Right", "YellowTairu" }
     };
 
