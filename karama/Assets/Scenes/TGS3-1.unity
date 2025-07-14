@@ -3655,6 +3655,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3787887259105080975, guid: f07cfc28d29a7d143b3492b655950058, type: 3}
+      propertyPath: 'allMaterials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d267d17d814cf6147bcbfc9915b4c69f, type: 2}
+    - target: {fileID: 3787887259105080975, guid: f07cfc28d29a7d143b3492b655950058, type: 3}
+      propertyPath: 'allMaterials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5442a4458902991438f2e83ef97d5d17, type: 2}
+    - target: {fileID: 3787887259105080975, guid: f07cfc28d29a7d143b3492b655950058, type: 3}
+      propertyPath: 'allMaterials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 804ba30cd90a4a949925a4599ca972f9, type: 2}
+    - target: {fileID: 3787887259105080975, guid: f07cfc28d29a7d143b3492b655950058, type: 3}
+      propertyPath: 'allMaterials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b05eba53a7345184684ffe1adb5ca87f, type: 2}
+    - target: {fileID: 3787887259105080975, guid: f07cfc28d29a7d143b3492b655950058, type: 3}
+      propertyPath: 'allMaterials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a9072f31951cf384b8a258cfabfbc002, type: 2}
     - target: {fileID: 3932490255905261601, guid: f07cfc28d29a7d143b3492b655950058, type: 3}
       propertyPath: m_Name
       value: RandomTile
