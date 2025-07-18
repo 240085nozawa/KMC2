@@ -26,8 +26,6 @@ public class RandomTile : MonoBehaviour
         }
 
         InvokeRepeating(nameof(ChangeColorFromNeighbors), 1f, changeInterval);
-        transform.Rotate(0, 0, 90);
-
     }
 
     // 周囲のタイルの色を取得し、そこからランダムで変化
