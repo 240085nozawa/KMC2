@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3807793412124699956}
   - component: {fileID: 3875893757302992874}
   - component: {fileID: 3787887259105080975}
+  - component: {fileID: 4263259437768354093}
   m_Layer: 6
   m_Name: RandomTile
   m_TagString: Untagged
@@ -132,3 +133,25 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e903e180f13c8a446bc9f0b4d4f5b610, type: 2}
   - {fileID: 2100000, guid: d8a670493eac09a48b4ad60199197e54, type: 2}
   - {fileID: 2100000, guid: 51b609badad89c34db91b18b0cfc64b1, type: 2}
+--- !u!95 &4263259437768354093
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3932490255905261601}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 051da7feb2eb95c478c70231d783df30, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

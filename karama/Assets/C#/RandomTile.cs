@@ -26,6 +26,8 @@ public class RandomTile : MonoBehaviour
         }
 
         InvokeRepeating(nameof(ChangeColorFromNeighbors), 1f, changeInterval);
+        transform.Rotate(0, 0, 90);
+
     }
 
     // 周囲のタイルの色を取得し、そこからランダムで変化
@@ -54,6 +56,7 @@ public class RandomTile : MonoBehaviour
                     if (!neighborTextureNames.Contains(texName))
                     {
                         neighborTextureNames.Add(texName);
+
                     }
                 }
             }
@@ -68,7 +71,9 @@ public class RandomTile : MonoBehaviour
         if (chosenMat != null)
         {
             tileRenderer.material = chosenMat;
+            
             Debug.Log($"[RandomTile] 色変更 → {chosenMat.name}");
         }
+        
     }
 }
