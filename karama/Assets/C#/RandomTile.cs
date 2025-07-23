@@ -54,7 +54,6 @@ public class RandomTile : MonoBehaviour
                     if (!neighborTextureNames.Contains(texName))
                     {
                         neighborTextureNames.Add(texName);
-
                     }
                 }
             }
@@ -62,16 +61,22 @@ public class RandomTile : MonoBehaviour
 
         if (neighborTextureNames.Count == 0) return;
 
-        // ランダムに1つ選択してその名前と一致するマテリアルを適用
-        string chosenTexName = neighborTextureNames[Random.Range(0, neighborTextureNames.Count)];
-        Material chosenMat = allMaterials.Find(mat => mat.mainTexture != null && mat.mainTexture.name == chosenTexName);
+        // 現在の色
+        string currentTex = tileRenderer.material.mainTexture.name;
+        int currentIndex = neighborTextureNames.IndexOf(currentTex);
 
-        if (chosenMat != null)
+        // 次のインデックス（最後なら0に戻る）
+        int nextIndex = (currentIndex + 1) % neighborTextureNames.Count;
+        string nextTexName = neighborTextureNames[nextIndex];
+
+        // 一致するマテリアルを探して適用
+        Material nextMat = allMaterials.Find(mat => mat.mainTexture != null && mat.mainTexture.name == nextTexName);
+
+        if (nextMat != null)
         {
-            tileRenderer.material = chosenMat;
-            
-            Debug.Log($"[RandomTile] 色変更 → {chosenMat.name}");
+            tileRenderer.material = nextMat;
+            Debug.Log($"[RandomTile] 色変更 → {nextMat.name}");
         }
-        
+
     }
 }
