@@ -12,6 +12,7 @@ TagManager:
   - Purple
   - Black
   - Play
+  - Arrow
   layers:
   - Default
   - TransparentFX
