@@ -188,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4004778587533804958}
   m_Layer: 0
-  m_Name: TGS2-3s
+  m_Name: TGS2-3S
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,6 +867,10 @@ PrefabInstance:
     - target: {fileID: 505778657861560461, guid: d9800ae118233ec4a88f97506ab8f1f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 874501921085670167, guid: d9800ae118233ec4a88f97506ab8f1f6, type: 3}
+      propertyPath: arrowPrefab
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 886984478033949239, guid: d9800ae118233ec4a88f97506ab8f1f6, type: 3}
       propertyPath: m_Name

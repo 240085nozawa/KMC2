@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TGS2-2.unity
     guid: 5d18e0d8adb0cbe49a149182eb94bf0e
   - enabled: 1
+    path: Assets/Scenes/TGS2-3.unity
+    guid: c6e80521dc131b14caeb30acb07f5d42
+  - enabled: 1
     path: Assets/Scenes/TGS3-1.unity
     guid: 5235adfa00f7ccb41be4fc5bd028a70a
   m_configObjects:
