@@ -65,7 +65,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433763444317852692}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 07689318afa3a5e4dbcc90187b3b379a, type: 2}
   m_CullingMode: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433763444317852692}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 036145066a639b241a34c170bde1ddb0, type: 3}
   m_Name: 
@@ -382,6 +382,10 @@ PrefabInstance:
     - target: {fileID: 3124950677071112904, guid: 5e870227d9d66d14896d24a9259084e2, type: 3}
       propertyPath: m_Name
       value: goalUnder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124950677071112904, guid: 5e870227d9d66d14896d24a9259084e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8019858786753879259, guid: 5e870227d9d66d14896d24a9259084e2, type: 3}
       propertyPath: m_LocalScale.y

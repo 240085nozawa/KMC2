@@ -10,6 +10,10 @@ public class ArrowController : MonoBehaviour
     //private AudioSource audioSource; //AudioSource 参照
     public GameObject clickSoundPrefab; // インスペクターで ClickSoundPlayer をセットする
 
+
+    bool isGoal = false;        //ゴールに行く矢印かどうか
+
+
     // 矢印の移動方向とプレイヤーの参照をセットする
     public void SetDirection(PlayerController controller, Vector3 direction)
     {
@@ -36,6 +40,14 @@ public class ArrowController : MonoBehaviour
                     //Debug.Log("矢印クリック成功: " + moveDirection);
                     OnMouseDown();
                     playerController.TryMove(moveDirection);
+
+                    //ゴールに行く矢印なら
+                    if(isGoal == true)
+                    {
+                        //子供のアニメーション
+                        GameObject.Find("GoalJunp").GetComponent<Animator>().SetTrigger("Jump");
+
+                    }
                     break;
                 }
             }
@@ -53,6 +65,12 @@ public class ArrowController : MonoBehaviour
         }
 
         //playerController?.TryMove(moveDirection); // 通常の移動
+    }
+
+    //ゴールに触れたら
+    private void OnTriggerEnter(Collider other)
+    {
+        isGoal = true;
     }
 }
 
