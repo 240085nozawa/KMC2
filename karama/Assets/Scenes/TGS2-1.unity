@@ -1296,7 +1296,7 @@ MonoBehaviour:
   distance: 4
   xSpeed: 240
   ySpeed: 240
-  yMinLimit: -20
+  yMinLimit: -6
   yMaxLimit: 80
   minDistance: 1.5
   maxDistance: 10
