@@ -30,6 +30,11 @@ public class MoveCounter : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void UseMove()
     {
         if (currentMoves > 0)
@@ -39,7 +44,14 @@ public class MoveCounter : MonoBehaviour
 
             if (currentMoves == 0)
             {
-                ShowRestartUI();
+                //if (ArrowController.isGoal == true)
+                //{
+
+                //}
+                //else
+                {
+                    ShowRestartUI();
+                }
             }
         }
     }
