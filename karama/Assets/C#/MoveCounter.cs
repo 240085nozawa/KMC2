@@ -49,6 +49,13 @@ public class MoveCounter : MonoBehaviour
 
                 //}
                 //else
+                // 最後にクリックされた矢印がゴール行きかどうか判定
+                if (ArrowController.lastClickedArrow != null &&
+                    ArrowController.lastClickedArrow.isGoal)
+                {
+
+                }
+                else
                 {
                     ShowRestartUI();
                 }

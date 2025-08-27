@@ -11,7 +11,9 @@ public class ArrowController : MonoBehaviour
     public GameObject clickSoundPrefab; // インスペクターで ClickSoundPlayer をセットする
 
 
-    bool isGoal = false;        //ゴールに行く矢印かどうか
+    public bool isGoal = false;        //ゴールに行く矢印かどうか
+
+    public static ArrowController lastClickedArrow; // ← 追加
 
 
     // 矢印の移動方向とプレイヤーの参照をセットする
@@ -37,6 +39,9 @@ public class ArrowController : MonoBehaviour
             {
                 if (hit.collider != null && hit.collider.gameObject == gameObject)// 矢印がクリックされた
                 {
+                    // 矢印がクリックされたら自分を記録
+                    lastClickedArrow = this;
+
                     //Debug.Log("矢印クリック成功: " + moveDirection);
                     OnMouseDown();
                     playerController.TryMove(moveDirection);
