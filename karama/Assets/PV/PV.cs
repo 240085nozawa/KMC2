@@ -12,6 +12,8 @@ public class PV : MonoBehaviour
     bool isPlayeng = false;     //再生中かどうかフラグ
     VideoPlayer player;         //動画プレイヤーコンポーネント
 
+    public Canvas canvas;   //Unity側でCanvasをアタッチ
+
 
     private void Start()
     {
@@ -65,6 +67,8 @@ public class PV : MonoBehaviour
     {
         player.Play();
         isPlayeng = true;
+
+        canvas.GetComponent<Canvas>().enabled = false;  //動画再生時はUIを消す
     }
 
 
@@ -74,6 +78,8 @@ public class PV : MonoBehaviour
     /// <param name="vp">プレイヤー（メンバ変数にしてるからいらないんだけど、動画終了時勝手に呼ばれるようにするために必要</param>
     private void Stop(VideoPlayer vp)
     {
+        canvas.GetComponent<Canvas>().enabled = true;   //再生停止したらUIを復活
+
         player.Stop();
         isPlayeng = false;
     }
