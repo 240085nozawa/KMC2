@@ -29,6 +29,9 @@ public class ArrowController : MonoBehaviour
     }
     void Update()
     {
+        // 手数切れならクリック判定しない
+        if (MoveCounter.isOutOfMoves) return;
+
         if (Input.GetMouseButtonDown(0))  // 左クリック
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

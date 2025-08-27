@@ -14,6 +14,9 @@ public class MoveCounter : MonoBehaviour
     public GameObject restartPanel; // 「初めから」ボタンを表示するパネル
     public Button restartButton; // 初めからボタン
 
+    public static bool isOutOfMoves = false; // ← 追加
+
+
     void Start()
     {
         currentMoves = maxMoves;
@@ -44,6 +47,7 @@ public class MoveCounter : MonoBehaviour
 
             if (currentMoves == 0)
             {
+                isOutOfMoves = true; // ← 手数切れを通知
                 //if (ArrowController.isGoal == true)
                 //{
 
