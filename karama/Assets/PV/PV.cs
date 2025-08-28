@@ -1,46 +1,48 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
 public class PV : MonoBehaviour
 {
-    public float waitTime = 10.0f; //‰½•b•ú‚Á‚Ä‚¨‚¢‚½‚ç“®‰æ‚ª—¬‚ê‚é‚©iƒGƒfƒBƒ^‘¤‚Å•ÏX‚µ‚Äj
+    public float waitTime = 10.0f; //ä½•ç§’æ”¾ã£ã¦ãŠã„ãŸã‚‰å‹•ç”»ãŒæµã‚Œã‚‹ã‹ï¼ˆã‚¨ãƒ‡ã‚£ã‚¿å´ã§å¤‰æ›´ã—ã¦ï¼‰
 
-    float elapsedTime = 0.0f;   //Œo‰ßŠÔ
-    Vector3 lastMousePosition;  //ƒ}ƒEƒX‚ÌˆÊ’u
-    bool isPlayeng = false;     //Ä¶’†‚©‚Ç‚¤‚©ƒtƒ‰ƒO
-    VideoPlayer player;         //“®‰æƒvƒŒƒCƒ„[ƒRƒ“ƒ|[ƒlƒ“ƒg
+    float elapsedTime = 0.0f;   //çµŒéæ™‚é–“
+    Vector3 lastMousePosition;  //ãƒã‚¦ã‚¹ã®ä½ç½®
+    bool isPlayeng = false;     //å†ç”Ÿä¸­ã‹ã©ã†ã‹ãƒ•ãƒ©ã‚°
+    VideoPlayer player;         //å‹•ç”»ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
 
-    public Canvas canvas;   //Unity‘¤‚ÅCanvas‚ğƒAƒ^ƒbƒ`
+    public Canvas canvas;       //Unityå´ã§Canvasã‚’ã‚¢ã‚¿ãƒƒãƒ
+
+    public AudioSource audioSource; //ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã®ã‚µã‚¦ãƒ³ãƒ‰
 
 
     private void Start()
     {
         player = GetComponent<VideoPlayer>();
-        player.loopPointReached += Stop;        //“®‰æ‚ªI‚í‚Á‚½‚çStop‚ªŒÄ‚Î‚ê‚é‚æ‚¤ƒCƒxƒ“ƒg‚ğd‚Ş
+        player.loopPointReached += Stop;        //å‹•ç”»ãŒçµ‚ã‚ã£ãŸã‚‰StopãŒå‘¼ã°ã‚Œã‚‹ã‚ˆã†ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä»•è¾¼ã‚€
 
-        lastMousePosition = Input.mousePosition;    //‰Šúƒ}ƒEƒXˆÊ’u
+        lastMousePosition = Input.mousePosition;    //åˆæœŸãƒã‚¦ã‚¹ä½ç½®
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Ä¶‚µ‚Ä‚È‚¢
+        //å†ç”Ÿã—ã¦ãªã„
         if (isPlayeng == false)
         {
-            //ŠÔŒv‘ª
+            //æ™‚é–“è¨ˆæ¸¬
             elapsedTime += Time.deltaTime;
 
-            //‰½‚©‘€ì‚µ‚½‚çŒo‰ßŠÔƒŠƒZƒbƒg
-            if (Input.anyKeyDown || (Input.mousePosition != lastMousePosition))
+            //ä½•ã‹æ“ä½œã—ãŸã‚‰çµŒéæ™‚é–“ãƒªã‚»ãƒƒãƒˆ
+            if (Input.anyKeyDown || (Input.mousePosition != lastMousePosition) || PadCheck())
             {
                 elapsedTime = 0.0f;
                 lastMousePosition = Input.mousePosition;
             }
 
 
-            //w’è‚µ‚½ŠÔ‚ªŒo‰ß‚µ‚½‚çÄ¶
+            //æŒ‡å®šã—ãŸæ™‚é–“ãŒçµŒéã—ãŸã‚‰å†ç”Ÿ
             if (elapsedTime > waitTime)
             {
                 elapsedTime = 0.0f;
@@ -48,11 +50,11 @@ public class PV : MonoBehaviour
             }
         }
 
-        //Ä¶’†
+        //å†ç”Ÿä¸­
         else
         {
-            //‰½‚©ƒL[‚ª‰Ÿ‚³‚ê‚½‚çPV’â~
-            if (Input.anyKeyDown)
+            //ä½•ã‹ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰PVåœæ­¢
+            if (Input.anyKeyDown || PadCheck())
             {
                 Stop(player);
             }
@@ -61,26 +63,77 @@ public class PV : MonoBehaviour
 
 
     /// <summary>
-    /// Ä¶
+    /// å†ç”Ÿ
     /// </summary>
     private void Play()
     {
+        
+        if (canvas != null)
+        {
+            canvas.GetComponent<Canvas>().enabled = false;  //å‹•ç”»å†ç”Ÿæ™‚ã¯UIã‚’æ¶ˆã™
+        }
+        if (audioSource != null)
+        {
+            audioSource.Stop(); //ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã®ã‚µã‚¦ãƒ³ãƒ‰ã‚’åœæ­¢
+        }
         player.Play();
         isPlayeng = true;
 
-        canvas.GetComponent<Canvas>().enabled = false;  //“®‰æÄ¶‚ÍUI‚ğÁ‚·
     }
 
 
     /// <summary>
-    /// ’â~
+    /// åœæ­¢
     /// </summary>
-    /// <param name="vp">ƒvƒŒƒCƒ„[iƒƒ“ƒo•Ï”‚É‚µ‚Ä‚é‚©‚ç‚¢‚ç‚È‚¢‚ñ‚¾‚¯‚ÇA“®‰æI—¹Ÿè‚ÉŒÄ‚Î‚ê‚é‚æ‚¤‚É‚·‚é‚½‚ß‚É•K—v</param>
+    /// <param name="vp">ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ï¼ˆãƒ¡ãƒ³ãƒå¤‰æ•°ã«ã—ã¦ã‚‹ã‹ã‚‰ã„ã‚‰ãªã„ã‚“ã ã‘ã©ã€å‹•ç”»çµ‚äº†æ™‚å‹æ‰‹ã«å‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«å¿…è¦</param>
     private void Stop(VideoPlayer vp)
     {
-        canvas.GetComponent<Canvas>().enabled = true;   //Ä¶’â~‚µ‚½‚çUI‚ğ•œŠˆ
+        if (canvas != null)
+        {
+            canvas.GetComponent<Canvas>().enabled = true;   //å†ç”Ÿåœæ­¢ã—ãŸã‚‰UIã‚’å¾©æ´»
+        }
+
+        if (audioSource != null)
+        {
+            audioSource.Play(); //BGMå¾©æ´»
+        }
 
         player.Stop();
         isPlayeng = false;
+
+    }
+
+
+    bool PadCheck()
+    {
+        // Unityã®æ—§Inputã§ä½¿ãˆã‚‹ã‚¸ãƒ§ã‚¤ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãƒœã‚¿ãƒ³ã¯ 0ã€œ19 ã¾ã§
+        for (int joyNum = 1; joyNum <= 8; joyNum++) // æœ€å¤§8å°ã¾ã§æƒ³å®š
+        {
+            for (int button = 0; button <= 19; button++)
+            {
+                // "Joystick1Button0" ã®ã‚ˆã†ã«æ–‡å­—åˆ—ã§KeyCodeã‚’ä½œã‚‹
+                string keyName = $"Joystick{joyNum}Button{button}";
+                KeyCode code = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyName);
+
+                if (Input.GetKeyDown(code))
+                {
+                    return true;
+                }
+            }
+        }
+
+        // ç‰¹æ®Š: Joystickç•ªå·ã‚’çœç•¥ã—ãŸã€Œã©ã®ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã§ã‚‚ãƒœã‚¿ãƒ³Xã€
+        for (int button = 0; button <= 19; button++)
+        {
+            KeyCode code = (KeyCode)System.Enum.Parse(typeof(KeyCode), $"JoystickButton{button}");
+            if (Input.GetKeyDown(code))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
+
+
