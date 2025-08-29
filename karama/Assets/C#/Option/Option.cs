@@ -8,10 +8,14 @@ public class Option : MonoBehaviour
 
     private bool isVisible = false;
 
+    //public static bool IsVisible { get; private set; } = false;
+
     // Optionƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
     public void ToggleOptions()
     {
         isVisible = !isVisible;
+
+        //IsVisible = isVisible; //ó‘Ô‚ğ”½‰f
 
         foreach (GameObject element in optionElements)
         {
@@ -28,5 +32,6 @@ public class Option : MonoBehaviour
             if (element != null)
                 element.SetActive(false);
         }
+        //IsVisible = false; //‰Šú‰»
     }
 }

@@ -32,6 +32,8 @@ public class ArrowController : MonoBehaviour
         // 手数切れならクリック判定しない
         if (MoveCounter.isOutOfMoves) return;
 
+        //if (Option.IsVisible) return; //オプション開いてたら無視
+
         if (Input.GetMouseButtonDown(0))  // 左クリック
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -63,6 +65,9 @@ public class ArrowController : MonoBehaviour
     }
     void OnMouseDown()
     {
+        //オプションUIが表示中なら反応しない
+        //if (Option.IsVisible) return;
+
         if (clickSoundPrefab != null)
         {
             GameObject sound = Instantiate(clickSoundPrefab);
