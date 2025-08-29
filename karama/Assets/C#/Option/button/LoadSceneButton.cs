@@ -17,8 +17,12 @@ public class LoadSceneButton : MonoBehaviour
     {
 
     }
+    //public void LoadScene(string sceneName)
+    //{
+    //    SceneManager.LoadScene(sceneName);
+    //}
     public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        FadeManager.Instance.LoadScene(sceneName, 1.0f); // フェード付き
     }
 }

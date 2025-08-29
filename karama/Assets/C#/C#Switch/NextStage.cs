@@ -49,7 +49,8 @@ public class NextStage : MonoBehaviour
         // 存在するかチェック（Build Settingsに登録されている必要あり）
         if (Application.CanStreamedLevelBeLoaded(nextStageName))
         {
-            SceneManager.LoadScene(nextStageName);
+            //SceneManager.LoadScene(nextStageName);
+            FadeManager.Instance.LoadScene(nextStageName, 1.0f);
         }
         else
         {
@@ -57,7 +58,8 @@ public class NextStage : MonoBehaviour
             string nextGroupName = $"TGS{group + 1}-1";
             if (Application.CanStreamedLevelBeLoaded(nextGroupName))
             {
-                SceneManager.LoadScene(nextGroupName);
+                //SceneManager.LoadScene(nextGroupName);
+                FadeManager.Instance.LoadScene(nextGroupName, 1.0f);
             }
             else
             {
