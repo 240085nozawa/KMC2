@@ -613,6 +613,10 @@ PrefabInstance:
       propertyPath: maxMoves
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5062329903131753051, guid: 9233aebf752370c44aa47ca3afb1e441, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5414865801321356994, guid: 9233aebf752370c44aa47ca3afb1e441, type: 3}
       propertyPath: m_Name
       value: Canvas 1
