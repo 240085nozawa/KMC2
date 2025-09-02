@@ -30,7 +30,7 @@ public class ArrowController : MonoBehaviour
     void Update()
     {
         // 手数切れならクリック判定しない
-        if (MoveCounter.isOutOfMoves) return;
+        //if (MoveCounter.isOutOfMoves) return;
 
         //if (Option.IsVisible) return; //オプション開いてたら無視
 
