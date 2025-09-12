@@ -4533,6 +4533,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4357032733660392367, guid: 3d08590f7b856774498b210bc0a07be8, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 66b207fb458804f408b26c26cd728bbb, type: 3}
+    - target: {fileID: 4357032733660392367, guid: 3d08590f7b856774498b210bc0a07be8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 66b207fb458804f408b26c26cd728bbb, type: 3}
     - target: {fileID: 7065167138088485484, guid: 3d08590f7b856774498b210bc0a07be8, type: 3}
       propertyPath: m_Name
       value: ButtonS
