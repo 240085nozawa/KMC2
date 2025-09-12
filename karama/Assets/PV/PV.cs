@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Video;
 
 public class PV : MonoBehaviour
@@ -19,6 +20,9 @@ public class PV : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GameObject.Find("BGM").GetComponent<AudioSource>();
+
+
         player = GetComponent<VideoPlayer>();
         player.loopPointReached += Stop;        //動画が終わったらStopが呼ばれるようイベントを仕込む
 
