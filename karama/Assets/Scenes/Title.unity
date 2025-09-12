@@ -6183,7 +6183,7 @@ PrefabInstance:
     - target: {fileID: 3003762523909897680, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
       propertyPath: m_VideoClip
       value: 
-      objectReference: {fileID: 32900000, guid: 726da2c822c4aa44587d014dfc030bb4, type: 3}
+      objectReference: {fileID: 32900000, guid: 6415bf08eabf6d74698e8263f49573ea, type: 3}
     - target: {fileID: 3003762523909897680, guid: 343cd85c8dde28f4a9c7ce9458ff6a4d, type: 3}
       propertyPath: m_TargetCamera
       value: 
@@ -7740,7 +7740,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 381981007776693010, guid: 823ee75ff03913d44a5def951d772aa4, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5227549597321177547, guid: 823ee75ff03913d44a5def951d772aa4, type: 3}
       propertyPath: m_LocalPosition.x
